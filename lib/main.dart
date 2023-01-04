@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weight_tracker/Auth/presentaion/bloc/auth_bloc.dart';
+import 'package:weight_tracker/Auth/presentaion/bloc/auth_state.dart';
 import 'package:weight_tracker/core/services/services_locator.dart';
 import 'package:weight_tracker/firebase_options.dart';
 import 'package:weight_tracker/weights/data/repository/weight_repository.dart';
@@ -27,9 +29,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: RepositoryProvider(
-        create: (context) => WeightsRepository(servicesLocator()),
-        child: const Home(),
-      ),
+          create: (context) => WeightsRepository(servicesLocator()),
+          child: BlocProvider(
+            create: (context) => AuthBloc(servicesLocator()),
+            child: const Home(),
+          )),
     );
   }
 }

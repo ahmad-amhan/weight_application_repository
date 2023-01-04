@@ -1,9 +1,9 @@
 import 'package:weight_tracker/weights/domain/entities/weight.dart';
 import 'package:weight_tracker/weights/domain/repository/base_weights_repository.dart';
 
-class GetWeightsUseCase {
+class WeightsUseCase {
   final BaseWeightsRepository baseWeightsRepository;
-  GetWeightsUseCase(this.baseWeightsRepository);
+  WeightsUseCase(this.baseWeightsRepository);
   Future<List<Weight>> get() async {
     return await (baseWeightsRepository.getWeights());
   }

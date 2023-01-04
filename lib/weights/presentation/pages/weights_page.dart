@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weight_tracker/Auth/presentaion/bloc/auth_bloc.dart';
+import 'package:weight_tracker/Auth/presentaion/bloc/auth_event.dart';
 import 'package:weight_tracker/weights/domain/entities/weight.dart';
 import 'package:weight_tracker/weights/presentation/blocs/weights_bloc/weights_bloc.dart';
 import 'package:weight_tracker/weights/presentation/blocs/weights_bloc/weights_event.dart';
@@ -27,6 +29,13 @@ class _WeightsPageState extends State<WeightsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          actions: [
+            ElevatedButton(
+                onPressed: () {
+                  BlocProvider.of<AuthBloc>(context).add(const SignOut());
+                },
+                child: const Text('Sign Out'))
+          ],
           title: const Center(child: Text('Weights App')),
         ),
         body: BlocBuilder<WeightsBloc, WeightsState>(
